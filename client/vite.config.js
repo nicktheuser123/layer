@@ -5,7 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/validate': 'http://localhost:3001'
+      '/validate': 'http://localhost:3001',
+      '/save-backup': 'http://localhost:3001',
+      '/fetch-schemas': 'http://localhost:3001'
     }
   }
 });

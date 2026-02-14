@@ -19,4 +19,25 @@ async function fetchThing(appUrl, apiKey, dataType, id) {
   return json.response;
 }
 
-module.exports = { fetchThing };
+/**
+ * Fetch meta/schema from Bubble API
+ * GET https://DOMAIN/api/1.1/meta
+ */
+async function fetchMeta(domain, apiKey) {
+  const base = (domain || '').replace(/\/$/, '');
+  const url = `${base}/api/1.1/meta`;
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Bubble API error ${res.status}: ${text}`);
+  }
+  const json = await res.json();
+  return json;
+}
+
+module.exports = { fetchThing, fetchMeta };

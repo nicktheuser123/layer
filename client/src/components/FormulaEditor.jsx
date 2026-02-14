@@ -1,5 +1,5 @@
-const PLACEHOLDER = `gross = order_Gross_Amount
-discount = order_Discount_Amount
+const PLACEHOLDER = `gross = order_gross_amount
+discount = order_discount_amount
 stripe_fee = gross * 0.029 + 0.3
 expected_total = gross - discount + stripe_fee`;
 
